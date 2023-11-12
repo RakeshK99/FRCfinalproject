@@ -50,6 +50,10 @@ public class Arm extends SubsystemBase {
   angularArmTalonFx.set(ControlMode.Velocity, angleArmController.calculate(positionCanCoder.getVelocity(), velocity));
 
   }
+
+  public void controlPercent(double percent){
+  angularArmTalonFx.set(ControlMode.PercentOutput, percent);
+  }
   public double getAngle() {
     // TODO: return current arm angle in degrees
     return positionCanCoder.getAbsolutePosition();
