@@ -46,7 +46,13 @@ public class Arm extends SubsystemBase {
   
     //angleArmController.calculate(theta);
   }
+  public void controllery(double velocity){
+  angularArmTalonFx.set(ControlMode.Velocity, angleArmController.calculate(positionCanCoder.getVelocity(), velocity));
+  }
 
+  public void controlVelocity(){
+    angularArmController.
+  }
   public double getAngle() {
     // TODO: return current arm angle in degrees
     return positionCanCoder.getAbsolutePosition();
