@@ -49,8 +49,7 @@ public class Arm extends SubsystemBase {
 
   public double getAngle() {
     // TODO: return current arm angle in degrees
-    double currentPostion = positionCanCoder.getAbsolutePosition();
-    return currentPostion;
+    return positionCanCoder.getAbsolutePosition();
   }
 
 
@@ -58,7 +57,7 @@ public class Arm extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     // TODO: log the current arm angle to smartdashboard
-    SmartDashboard.
+    SmartDashboard.putNumber("arm position : ", getAngle());
 
   }
 }
