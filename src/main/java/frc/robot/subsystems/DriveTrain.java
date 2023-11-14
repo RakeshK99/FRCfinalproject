@@ -32,7 +32,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void getPercentOutput(){
-    frontRightCanSparkMax.s
+   // frontRightCanSparkMax.getper
   }
 }
 
