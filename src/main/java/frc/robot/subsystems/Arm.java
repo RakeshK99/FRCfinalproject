@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -32,11 +33,18 @@ public class Arm extends SubsystemBase {
     // TODO: encoder
     CANCoder positionCanCoder = new CANCoder(0);
     PIDController angleArmController = new PIDController(0, 0, 0);
+    XboxController controller = new XboxController(0);
   /** Creates a new Arm. */
   public Arm() {
   positionCanCoder.setPositionToAbsolute();
   }
 
+  public double conversion(double num1, double num2){
+    /*num1  = controller.getLeftX();
+    num2 = controller.getLeftY();
+    */
+    return Math.atan2(num1, num2);
+  }
   public void control(double theta) {
     // theta is in degrees
     // TODO: uses the PID controller and the encoder to move the subsystem to angle theta

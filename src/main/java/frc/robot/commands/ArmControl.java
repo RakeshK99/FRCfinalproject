@@ -13,11 +13,17 @@ import frc.robot.RobotContainer;
 public class ArmControl extends CommandBase {
   /** Creates a new ArmControl. */
   double percent;
+  double angle;
 
-  public ArmControl(double percent) {
+  /*public ArmControl(double percent) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.arm);
     this.percent = percent;
+  }
+  */
+  public  ArmControl(double angle){
+    addRequirements(RobotContainer.arm);
+    this.angle = angle;
   }
 
   // Called when the command is initially scheduled.

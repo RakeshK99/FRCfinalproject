@@ -5,12 +5,21 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.ArmControl;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.ExampleSubsystem;
+
+import java.lang.ModuleLayer.Controller;
+import java.sql.Driver;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -23,24 +32,27 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
   public static final Arm arm = new Arm();
+  
+  //driver.getRBButton().onTrue(new InstantCommand(Arm::ArmControl, Arm));
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
-
+      
+      public static final XboxController MANIP_CONTROLLER = new XboxController(0);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    
+    arm.setDefaultCommand(new RunCommand(()-> arm.controlPercent(MANIP_CONTROLLER.getLeftY()),arm));
+    arm.setDefaultCommand(new RunCommand(()-> arm.control(arm.conversion(MANIP_CONTROLLER.getLeftX(),MANIP_CONTROLLER.getLeftY())), arm));
+    
     // Configure the trigger bindings
     configureBindings();
     Joystick driverJoystick = new Joystick(0);
     Joystick manipJoystick = new Joystick(0);
+    
   }
-
-
-
-
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
    * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
