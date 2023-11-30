@@ -44,7 +44,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     
-    arm.setDefaultCommand(new RunCommand(()-> arm.controlPercent(MANIP_CONTROLLER.getLeftY()),arm));
+   // arm.setDefaultCommand(new RunCommand(()-> arm.controlPercent(MANIP_CONTROLLER.getLeftY()),arm));
     arm.setDefaultCommand(new RunCommand(()-> arm.control(arm.conversion(MANIP_CONTROLLER.getLeftX(),MANIP_CONTROLLER.getLeftY())), arm));
     
     // Configure the trigger bindings
