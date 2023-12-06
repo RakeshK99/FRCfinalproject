@@ -33,7 +33,7 @@ public class ArmControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.arm.controlPercent(percent);
+    RobotContainer.arm.control(angle);
   }
 
   // Called once the command ends or is interrupted.
